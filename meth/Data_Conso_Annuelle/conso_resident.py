@@ -34,4 +34,23 @@ def Elec_Adresse(Commune,Adresse,Annee,type):
         df_adr = df_2021[df_2021["Adresse"] == Adresse]
         df_adr = df_adr[df_adr["Nom de la commune"] == Commune]
         return(df_adr[type].values[0])
+   
+def Elec_Commune(Commune,Annee):
+    """"Donne la consommation annuelle moyenne de la commune en MHW
+    Commune(string):nom de la commune
+    Annee(int):date de l'année
+    return float"""
+    if Annee == 2018:
+        df_com =  df_2018[df_2018["Nom de la commune"] == Commune]
+        return(round(df_com[cons_commune].mean(),3))
+    if Annee == 2019:
+        df_com =  df_2019[df_2019["Nom de la commune"] == Commune]
+        return(round(df_com[cons_commune].mean(),3))
+    if Annee == 2020:
+        df_com =  df_2020[df_2020["Nom de la commune"] == Commune]
+        return(round(df_com[cons_commune].mean(),3))
+    if Annee == 2020:
+        df_com =  df_2020[df_2020["Nom de la commune"] == Commune]
+        return(round(df_com[cons_commune].mean(),3))
+
 
