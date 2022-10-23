@@ -1,9 +1,9 @@
 import geopandas as gpd
 import matplotlib.pyplot as plt
 
-maps = ['meth/map_dataset/communes-version-simplifiee.geojson',
-        'meth/map_dataset/departements-version-simplifiee.geojson',
-        'meth/map_dataset/regions-version-simplifiee.geojson']
+maps = ['visualization/map_dataset/communes-version-simplifiee.geojson',
+        'visualization/map_dataset/departements-version-simplifiee.geojson',
+        'visualization/map_dataset/regions-version-simplifiee.geojson']
 
 
 class ChoroMap():
@@ -62,16 +62,3 @@ class ChoroMap():
         if extension != ".geojson":
             return False
         return True
-
-# Constructeurs :
-cm = ChoroMap()  # Constructeur par défaut
-# cm = ChoroMap(2) #Constructeur par échelle
-# cmTest = ChoroMap(2)
-# cm = ChoroMap(cmTest) #Constructeur par copie
-# cm = ChoroMap("data/france_geojson/metropole.geojson") #Constructeur par geojson
-
-# Erreurs :
-# cm = ChoroMap(3) #Erreur constructeur par échelle
-# cm = ChoroMap("hello") #Erreur constructeur par geojson
-
-cm.cm_show()
