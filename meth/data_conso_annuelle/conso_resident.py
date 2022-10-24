@@ -119,3 +119,15 @@ def Elec_Departement(Departement, Annee):
     if Annee == 2021:
         df_dep = df_2021[df_2021['Departement'] == Departement]
         return(sum(df_dep[cons_commune].unique()))
+    
+Elec_Par_Departement_2018 = {}
+Elec_Par_Departement_2019 = {}
+Elec_Par_Departement_2020 = {}
+Elec_Par_Departement_2021 = {}
+for i in range (1,96):
+    Elec_Par_Departement_2018[i] = Elec_Departement(i,2018)
+    Elec_Par_Departement_2019[i] = Elec_Departement(i,2019)
+    Elec_Par_Departement_2020[i] = Elec_Departement(i,2020)
+    Elec_Par_Departement_2021[i] = Elec_Departement(i,2021)
+
+    
