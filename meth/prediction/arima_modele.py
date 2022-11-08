@@ -43,8 +43,8 @@ Ndf=Ndf.sort_index(ascending=True)
 # fonction pour tester la stattionarité de notre dataFrame
 def test_stationarity(timeseries):
     import matplotlib.pyplot as plt
-    rolmean = timeseries.rolling(window=15).mean() 
-    rolstd = timeseries.rolling(window=15).std()
+    rolmean = timeseries.rolling(window=96).mean() 
+    rolstd = timeseries.rolling(window=96).std()
     
     orig =plt.plot(timeseries,label='Data Original') # affichage de DataFrame
     mean =plt.plot(rolmean,label='la moyenne')# affichage de la moyenne
@@ -99,7 +99,7 @@ def predict(Ndf,p,d,q):
     residual.plot(kind='kde')
     
     
-# predict(Ndf, 0, d, q)(d et q à chercher)
+# predict(Ndf, d, d, q)(p, d et q à chercher)
 
 """   p détermine le nombre de termes autorégressifs (AR)
       d détermine l’ordre de différenciation
