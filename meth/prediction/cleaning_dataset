@@ -1,0 +1,32 @@
+"""
+@author: maryam
+"""
+
+import numpy as np
+import datetime
+import matplotlib.pyplot as plt
+import pandas as pd
+
+data = pd.read_csv('eco2mix-national-tr.csv',sep = ";", index_col='Date', parse_dates=True)
+elec = pd.read_csv('data-2020.csv', sep = ";",  encoding='latin-1')
+elec.index
+
+elec.columns #nom des colonnes
+
+elec.shape # nombre de lignes et nb de colonnes
+
+# trouver les colonnes numériques et catégoriques
+
+num_features = elec.select_dtypes(include = ['int64', 'float64']).columns # on veut que le nom des colonnes
+cat_features = elec.select_dtypes(include = 'object').columns
+
+#recherche des données manquantes
+elec.isnull() #renvoie false pour les valeurs non nulles et true pour les valeurs nulles
+#renvoie le nb de valeurs nulles par colonne
+elec.isnull().sum()
+
+# renvoie le nb de valeurs nulles par colonne dans l'ordre croissant
+elec.isnull().sum().sort_values(ascending=False) 
+
+# supprimer les lignes avec au moins une donnée manquante
+elec.dropna(how = 'any') 
