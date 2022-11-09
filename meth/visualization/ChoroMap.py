@@ -1,9 +1,9 @@
 import geopandas as gpd
 import matplotlib.pyplot as plt
 
-maps = ['visual-sization/map_dataset/communes-version-simplifiee.geojson',
+maps = ['visualization/map_dataset/communes-version-simplifiee.geojson',
         'visualization/map_dataset/departements-version-simplifiee.geojson',
-        'visualization/map_dataset/regions-versionimplifiee.geojson']
+        'visualization/map_dataset/regions-version-simplifiee.geojson']
 
 
 class ChoroMap():
