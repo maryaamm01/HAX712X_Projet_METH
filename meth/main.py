@@ -2,6 +2,7 @@ from visualization.ChoroMap import ChoroMap
 
 # Constructeurs :
 cm = ChoroMap()  # Constructeur par défaut
+test = "test"
 # cm = ChoroMap(2) #Constructeur par échelle
 # cmTest = ChoroMap(2)
 # cm = ChoroMap(cmTest) #Constructeur par copie
