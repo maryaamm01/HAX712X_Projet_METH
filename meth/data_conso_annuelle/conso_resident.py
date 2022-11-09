@@ -1,9 +1,6 @@
 import pandas as pd
 import numpy as np
 
-#Test push
-
-
 df = pd.read_csv(
     "consommation-annuelle-residentielle-par-adresse.csv", sep=';')
 cons_total = "Consommation annuelle totale de l'adresse (MWh)"
