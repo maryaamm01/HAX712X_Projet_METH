@@ -1,1 +1,26 @@
-Compte rendu de mi projet. 
+Compte rendu de mi projet :
+
+1. Répartition des tâches :
+
+Maryam et Hamza : 
+
+- Importation et traitement de la base de données dédiée à la prédiction ( traitement des données manquantes, indexation des données...).
+- Recherche du modèle de prédiction (ARIMA, basé sur la théorie des séries temporelles).
+- Application du modèle sur la base de données de la consommation d'électricité.
+- Analyse de résultats obtenus et leur cohérence. 
+- Création du graphique de prédiction selon les sources d'énergie.
+
+Ema :
+
+- Importation de la base de données des points géographiques de la France (par commune, département et région).
+- Création d'une carte interactive de la France.
+- Création d'une interface graphique.
+
+Thomas: 
+
+- Importation et gestion de la base de données dédiée à la carte.
+- Création d'une classe pour créer un format de données utilisable pour la carte.
+- Création de fonctions pour l'interface graphique et la carte interactive.
+
+
+
