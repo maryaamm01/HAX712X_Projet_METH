@@ -16,11 +16,14 @@ Ema :
 - Création d'une carte interactive de la France.
 - Création d'une interface graphique.
 
-Thomas: 
+Thomas : 
 
 - Importation et gestion de la base de données dédiée à la carte.
 - Création d'une classe pour créer un format de données utilisable pour la carte.
 - Création de fonctions pour l'interface graphique et la carte interactive.
 
+Tâches communes :
 
+- Documentation du projet (classes, fonctions...)
+- Création des tests 
 
