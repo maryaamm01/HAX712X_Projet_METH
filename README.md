@@ -8,9 +8,10 @@ This project handles datasets from the French electricity consumption with the m
 
 The datasets we used are available at:
 - [opendatasoft](https://odre.opendatasoft.com/explore/dataset/eco2mix-national-tr/information/?disjunctive.nature&sort=-date_heure) (dataset for prediction)
+- - https://www.rte-france.com/eco2mix/telecharger-les-indicateurs (dataset for prediction)
 - [enedis](https://data.enedis.fr/explore/dataset/consommation-annuelle-residentielle-par-adresse/information/)
 - [france-geojson](https://github.com/gregoiredavid/france-geojson/blob/master/README.md)
-- https://www.rte-france.com/eco2mix/telecharger-les-indicateurs
+
 ## Installation and configuration
 
 To use the module, you should only have to import it to your python project using ```python import meth```. An example of use is included in the /meth/tests subdirectory.
