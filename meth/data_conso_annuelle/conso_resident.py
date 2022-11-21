@@ -16,16 +16,22 @@ df_2020 = pd.read_csv(
 df_2021 = pd.read_csv(
     "consommation-annuelle-residentielle-par-adresse2021.csv", sep=';')
 
-# Nettoyage des données
-
-df_2018 = df_2018.drop(['Code IRIS', 'Numéro de voie', 'Indice de répétition',
-                       'Type de voie', 'Libellé de voie', 'Segment de client', 'Tri des adresses'], axis=1)
-df_2019 = df_2019.drop(['Code IRIS', 'Numéro de voie', 'Indice de répétition',
-                       'Type de voie', 'Libellé de voie', 'Segment de client', 'Tri des adresses'], axis=1)
-df_2020 = df_2020.drop(['Code IRIS', 'Numéro de voie', 'Indice de répétition',
-                       'Type de voie', 'Libellé de voie', 'Segment de client', 'Tri des adresses'], axis=1)
-df_2021 = df_2021.drop(['Code IRIS', 'Numéro de voie', 'Indice de répétition',
-                       'Type de voie', 'Libellé de voie', 'Segment de client', 'Tri des adresses'], axis=1)
+# Nettoyage des données (déja fait dans les .csv du github)
+#df_2018 = df_2018.drop(['Code IRIS', 'Numéro de voie', 'Indice de répétition',
+#                       'Type de voie', 'Libellé de voie', 'Segment de client',
+#                        'Tri des adresses','Année','Nom IRIS'], axis=1)
+#
+#df_2019 = df_2019.drop(['Code IRIS', 'Numéro de voie', 'Indice de répétition',
+#                       'Type de voie', 'Libellé de voie', 'Segment de client',
+#                        'Tri des adresses','Année','Nom IRIS'], axis=1)
+#
+#df_2020 = df_2020.drop(['Code IRIS', 'Numéro de voie', 'Indice de répétition',
+#                       'Type de voie', 'Libellé de voie', 'Segment de client',
+#                        'Tri des adresses','Année','Nom IRIS'], axis=1)
+#
+#df_2021 = df_2021.drop(['Code IRIS', 'Numéro de voie', 'Indice de répétition',
+#                       'Type de voie', 'Libellé de voie', 'Segment de client',
+#                        'Tri des adresses','Année','Nom IRIS'], axis=1)
 
 
 # Création département
