@@ -4,6 +4,7 @@ import pandas as pd
 import datetime
 import numpy as np
 import os
+pip install pooch
 import pooch
 
 def dataframe():
