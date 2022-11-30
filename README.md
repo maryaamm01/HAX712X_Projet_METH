@@ -22,7 +22,7 @@ To install the requirements, please use the following command:
 
 To run the visualization, make sure you are in the /meth folder, then use:
 
-  streamlit run vizualisation.py
+    streamlit run vizualisation.py
 
 ## Licence
 
