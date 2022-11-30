@@ -1,0 +1,8 @@
+pandas
+numpy
+pooch
+geopandas
+matplotlib
+streamlit
+streamlit_folium
+folium
