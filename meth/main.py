@@ -19,10 +19,10 @@ conso2021 = Data(data2021)
 cons_commune_mhw = "consommation_annuelle_totale_de_l_adresse_mwh"
 
 #Test
-print(conso2020.getMax(cons_commune_mhw))
-print(conso2020.getMin(cons_commune_mhw))
+#print(conso2020.getMax(cons_commune_mhw))
+#print(conso2020.getMin(cons_commune_mhw))
 
-#cm = ChoroMap()
+cm = ChoroMap()
 # cm = ChoroMap(2) #Constructeur par échelle
 # cmTest = ChoroMap(2)
 # cm = ChoroMap(cmTest) #Constructeur par copie
