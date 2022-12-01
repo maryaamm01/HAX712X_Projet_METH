@@ -1,10 +1,10 @@
-from typing import Any
+from typing import Any # Accented characters
 
-import streamlit as st
-import pandas as pd
-import geopandas as gpd
-import folium
-from streamlit_folium import st_folium
+import pandas as pd # Data
+import geopandas as gpd # Geographic Data
+import folium # Map
+import streamlit as st # Visualizing the maps on a browser page
+from streamlit_folium import st_folium # Visualizing the maps on a browser page
 
 from data_conso_annuelle.conso_resident import Elec_Departement, Elec_Commune
 
@@ -26,29 +26,40 @@ regions = {
     "Nouvelle-Aquitaine": [16, 17, 19, 23, 24, 33, 40, 47, 64, 79, 86, 87],
     "Occitanie": [9, 11, 12, 30, 31, 32, 34, 46, 48, 65, 66, 81, 82],
     "Pays de la Loire": [44, 49, 53, 72, 85],
-    "Provence-Alpes-Côte d'Azur": [4, 5, 6, 13, 83, 84],
+    "Provence-Alpes-Côte d'Azur": [4, 5, 6, 13, 83, 84]
 }
 
+# Streamlit app parameters
 APP_TITLE = "Carte"
 APP_SUB_TITLE = "Consommation d'électricité en France"
-
-YEARS = [2018, 2019, 2020, 2021]
 
 st.set_page_config(APP_TITLE)
 st.title(APP_TITLE)
 st.caption(APP_SUB_TITLE)
 
-YEAR = 2020
+YEAR = 2018
 
 
 def get_region_consumption(region: str) -> float:
+    """"
+    Calculates electricity consumption for the specified region
+    @param region: The region from which we want to get the electricity consumption (str)
+    @return: The electricity consumption (float)
+    """
     return sum([Elec_Departement(dpt, YEAR) for dpt in regions[region]])
 
 
 def display(granularity: str, dataframe: Any, key: str = 'nom'):
+    """Displays a choropleth map showing the French electricity consumption,
+    the regions of the map being displayed according to the specified granularity.
+    @param: granularity: "communes", "departements" or "regions".
+    @param: dataframe: the dataset used to color the choropleth map, converted to a dataframe.
+    """
+    # Creating the map and getting folium to focus on the right place (France)
     territory_map = folium.Map(location=[46.8534, 2.3488], zoom_start=5, scrollWheelZoom=False,
                                tiles='CartoDB positron')
 
+    # Adding data to the map
     choropleth = folium.Choropleth(
         geo_data=gpd.read_file(granularities[granularity], encoding="utf-8"),
         key_on=f'feature.properties.{key}',
@@ -59,6 +70,7 @@ def display(granularity: str, dataframe: Any, key: str = 'nom'):
     )
     choropleth.geojson.add_to(territory_map)
 
+    # Adding labels to the regions
     df_indexed = dataframe.set_index("nom")
     for feature in choropleth.geojson.data['features']:
         df_col = feature["properties"][key]
@@ -70,9 +82,10 @@ def display(granularity: str, dataframe: Any, key: str = 'nom'):
         folium.features.GeoJsonTooltip(["nom", "cons"], labels=False)
     )
 
-    st_folium(territory_map, width=700, height=450)
+    st_folium(territory_map, width=700, height=450) # Plotting in the streamlit app
 
 
+# "Main"
 dataset = {"nom": regions.keys(), "cons": [get_region_consumption(region) for region in regions.keys()]}
 df = pd.DataFrame.from_dict(dataset)
 display("regions", df)
