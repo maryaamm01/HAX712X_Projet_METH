@@ -1,5 +1,4 @@
 #%%
-ghghj
 import CreationData as cr
 #mathematical operations
 import numpy as np
