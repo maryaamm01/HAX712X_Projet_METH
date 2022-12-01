@@ -29,15 +29,14 @@ regions = {
     "Provence-Alpes-Côte d'Azur": [4, 5, 6, 13, 83, 84]
 }
 
+YEAR = 2018
+grain = "communes"
+
 # Streamlit app parameters
-APP_TITLE = "Carte"
-APP_SUB_TITLE = "Consommation d'électricité en France"
+APP_TITLE = "Carte de la consommation d'électricité en France (MWh)"
 
 st.set_page_config(APP_TITLE)
 st.title(APP_TITLE)
-st.caption(APP_SUB_TITLE)
-
-YEAR = 2018
 
 
 def get_region_consumption(region: str) -> float:
@@ -84,13 +83,22 @@ def display(granularity: str, dataframe: Any, key: str = 'nom'):
 
     st_folium(territory_map, width=700, height=450) # Plotting in the streamlit app
 
+def disp(granularity: str):
+    if granularity == "regions":
+        APP_SUB_TITLE = "Année : " + str(YEAR) + ", " + "Granularité : " + grain
+        st.caption(APP_SUB_TITLE)
+        dataset = {"nom": regions.keys(), "cons": [get_region_consumption(region) for region in regions.keys()]}
+        df = pd.DataFrame.from_dict(dataset)
+        display(granularity, df)
+
+    elif granularity == "departements": ##A COMPLETER : Zoom sur la région, spécifier la région en subtitle
+        APP_SUB_TITLE = "Année : " + str(YEAR) + ", " + "Granularité : " + grain + ", Region : "
+        st.caption(APP_SUB_TITLE)
+        dataset = {"nom": [str(i) if i > 9 else f"0{i}" for i in range(96)],
+                       "cons": [Elec_Departement(i, YEAR) for i in range(96)]}
+        df = pd.DataFrame.from_dict(dataset)
+        display("departements", df, "code")
+
 
 # "Main"
-dataset = {"nom": regions.keys(), "cons": [get_region_consumption(region) for region in regions.keys()]}
-df = pd.DataFrame.from_dict(dataset)
-display("regions", df)
-
-dataset = {"nom": [str(i) if i > 9 else f"0{i}" for i in range(96)],
-           "cons": [Elec_Departement(i, YEAR) for i in range(96)]}
-df = pd.DataFrame.from_dict(dataset)
-display("departements", df, "code")
+disp(grain)
