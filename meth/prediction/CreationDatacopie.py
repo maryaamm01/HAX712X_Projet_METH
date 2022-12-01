@@ -12,10 +12,9 @@ def dataframe(energie):
     url = "https://bit.ly/3i1OFkU"
     path_target = "./eco2mix-national-cons-def.csv"
     path, fname = os.path.split(path_target)
-    energies = ['Fioul','Charbon','Gaz','NuclÈaire','Eolien','Solaire','Hydraulique']
     pooch.retrieve(url, path=path, fname=fname, known_hash=None,)
-    data2019 = pd.read_csv("eco2mix-national-cons-def.csv",sep=";")
-    data2019 = data2019[['Date','Heure', energie ]]
+    data2019= pd.read_csv("eco2mix-national-cons-def.csv",sep=";")
+    data2019=data2019[['Date','Heure',energie]]
     ##changer le format du temps. 
     time_improved = pd.to_datetime(data2019['Date'] +
                                     ' ' + data2019['Heure'],
@@ -31,18 +30,15 @@ def dataframe(energie):
             data2019[energie][nan] = (data2019[energie][nan-1] +data2019[energie][nan+1])/2
     data2019[energie][len(data2019)-1]= (data2019[energie][len(data2019)-2]+data2019[energie][len(data2019)-3])/2        
     print("le nombre de NaN sur data2019 est : ",int(data2019.isna().sum())) 
-  
-    
     #____________________Création du Data 2020_________________________
-    
     url = "https://bit.ly/3V81yIg"
     path_target = "./eco2mix-national-cons-def(1).csv"
     path, fname = os.path.split(path_target)
     pooch.retrieve(url, path=path, fname=fname, known_hash=None,)
     data2020= pd.read_csv("eco2mix-national-cons-def(1).csv",sep=";")
-    data2020=data2020[['Date','Heure', i]]
+    data2020=data2020[['Date','Heure',energie]]
     ## changer le format du temps.
-        time_improved = pd.to_datetime(data2020['Date'] +
+    time_improved = pd.to_datetime(data2020['Date'] +
                                     ' ' + data2020['Heure'],
                                     format='%Y-%m-%d %H:%M')
     data2020['Temps'] = time_improved  
@@ -62,7 +58,7 @@ def dataframe(energie):
     path, fname = os.path.split(path_target)
     pooch.retrieve(url, path=path, fname=fname, known_hash=None,)
     data2021= pd.read_csv("eco2mix-national-cons-def(2).csv",sep=";")
-    data2021= data2021[['Date','Heure',energie]]
+    data2021=data2021[['Date','Heure',energie]]
     ## changer le format du temps .
     time_improved = pd.to_datetime(data2021['Date'] +
                                     ' ' + data2021['Heure'],
@@ -125,4 +121,5 @@ def dataframe(energie):
     datafinal=pd.concat([data2019,data2020,data2021,data2022HALF1,data2022HALF2],axis=0)
     return datafinal
 # %%
-        
+
+
