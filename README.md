@@ -14,7 +14,15 @@ The datasets we used are available at:
 
 ## Installation and configuration
 
-To use the module, you should only have to import it to your python project using ```python import meth```. An example of use is included in the /meth/tests subdirectory.
+To install the requirements, please use the following command: 
+
+    pip install -r requirements.txt
+
+## Use
+
+To run the visualization, make sure you are in the /meth folder, then use:
+
+    streamlit run vizualisation.py
 
 ## Licence
 

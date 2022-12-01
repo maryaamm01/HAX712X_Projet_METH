@@ -7,14 +7,10 @@ cons_commune = "Consommation annuelle moyenne de la commune (MWh)"
 
 
 # Donnée par année
-df_2018 = pd.read_csv(
-    "consommation-annuelle-residentielle-par-adresse2018.csv", sep=';')
-df_2019 = pd.read_csv(
-    "consommation-annuelle-residentielle-par-adresse2019.csv", sep=';')
-df_2020 = pd.read_csv(
-    "consommation-annuelle-residentielle-par-adresse2020.csv", sep=';')
-df_2021 = pd.read_csv(
-    "consommation-annuelle-residentielle-par-adresse2021.csv", sep=';')
+df_2018 = pd.read_csv("./data_conso_annuelle/consommation-annuelle-residentielle-par-adresse2018.csv", sep=';')
+df_2019 = pd.read_csv("./data_conso_annuelle/consommation-annuelle-residentielle-par-adresse2019.csv", sep=';')
+df_2020 = pd.read_csv("./data_conso_annuelle/consommation-annuelle-residentielle-par-adresse2020.csv", sep=';')
+df_2021 = pd.read_csv("./data_conso_annuelle/consommation-annuelle-residentielle-par-adresse2021.csv", sep=';')
 
 # Nettoyage des données (déja fait dans les .csv du github)
 #df_2018 = df_2018.drop(['Code IRIS', 'Numéro de voie', 'Indice de répétition',
