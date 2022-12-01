@@ -24,6 +24,10 @@ To run the visualization, make sure you are in the /meth folder, then use:
 
     streamlit run vizualisation.py
 
+## References
+
+- Zakaria Chowdhury, [streamlit-map-dashboard](https://github.com/zakariachowdhury/streamlit-map-dashboard)
+
 ## Licence
 
 We do not have a licence yet.
