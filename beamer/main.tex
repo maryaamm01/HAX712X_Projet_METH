@@ -1,0 +1,68 @@
+\documentclass[compress, red]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{listings}
+
+
+\definecolor{bordeaux}{rgb}{178, 51, 51}
+
+\usetheme{Warsaw}
+
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title[Projet HAX712X] %optional
+{Projet HAX712X METH}
+
+\subtitle{Prédiction et visualization de la consommation d'électricité en France}
+
+\author[M. Akkouh, E. Cerezo, T. Laugié, H. Slama] % (optional)
+{Maryam Akkouh \and Ema Cerezo\\ Thomas Laugié \and Hamza Slama}
+
+
+\date[VLC 2021] % (optional)
+{Rapport de mi-projet, décembre 2022}
+
+\logo{\includegraphics[height=1cm]{images/logo-ssd.png}}
+
+%End of title page configuration block
+%------------------------------------------------------------
+
+%------------------------------------------------------------
+%The next block of commands puts the table of contents at the 
+%beginning of each section and highlights the current section:
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+%------------------------------------------------------------
+
+\begin{document}
+
+%The next statement creates the title page.
+\frame{\titlepage}
+
+%---------------------------------------------------------
+%This block of code is for the table of contents after
+%the title page
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+%---------------------------------------------------------
+
+\input{sections/Introduction.tex}
+
+\input{sections/TraitementDesDonnees.tex}
+
+\input{sections/Visualisation.tex}
+
+\input{sections/Prediction.tex}
+
+\end{document}
