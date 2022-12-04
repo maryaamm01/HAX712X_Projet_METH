@@ -6,7 +6,7 @@ import numpy as np
 import os
 import pooch
 
-def dataframeenergie:
+def dataframe(energie):
     #___________________Création du Data 2019_________________________
 
     url = "https://bit.ly/3i1OFkU"
