@@ -48,18 +48,19 @@ df_2021['Departement'] = df_2021['Departement'].apply(
 
 # Les 3 communes qui consomment le plus dans l'année:
 rankingMax2018 = {}
-i=0
+i = 0
 df_2018_max = df_2018
-df_max=df_2018_max[cons_commune].max()
+df_max = df_2018_max[cons_commune].max()
 df_max_ville_2018 = df_2018_max[df_2018_max[cons_commune] == df_max]
 df_max_ville_2018_2 = df_max_ville_2018['Nom de la commune'].unique().tolist()
 rankingMax2018[df_max_ville_2018_2[0]] = df_max
 index = df_max_ville_2018.index[0]
 df_2018_max = df_2018_max.drop([index])
-while i !=2:
-    df_max=df_2018_max[cons_commune].max()
+while i != 2:
+    df_max = df_2018_max[cons_commune].max()
     df_max_ville_2018 = df_2018_max[df_2018_max[cons_commune] == df_max]
-    df_max_ville_2018_2 = df_max_ville_2018['Nom de la commune'].unique().tolist()
+    df_max_ville_2018_2 = df_max_ville_2018['Nom de la commune'].unique(
+    ).tolist()
     if df_max_ville_2018_2[0] in rankingMax2018:
         index = df_max_ville_2018.index[0]
         df_2018_max = df_2018_max.drop([index])
@@ -67,21 +68,22 @@ while i !=2:
         rankingMax2018[df_max_ville_2018_2[0]] = df_max
         index = df_max_ville_2018.index[0]
         df_2018_max = df_2018_max.drop([index])
-        i +=1
+        i += 1
 
 rankingMax2019 = {}
-i=0
+i = 0
 df_2019_max = df_2019
-df_max=df_2019_max[cons_commune].max()
+df_max = df_2019_max[cons_commune].max()
 df_max_ville_2019 = df_2019_max[df_2019_max[cons_commune] == df_max]
 df_max_ville_2019_2 = df_max_ville_2019['Nom de la commune'].unique().tolist()
 rankingMax2019[df_max_ville_2019_2[0]] = df_max
 index = df_max_ville_2019.index[0]
 df_2019_max = df_2019_max.drop([index])
-while i !=2:
-    df_max=df_2019_max[cons_commune].max()
+while i != 2:
+    df_max = df_2019_max[cons_commune].max()
     df_max_ville_2019 = df_2019_max[df_2019_max[cons_commune] == df_max]
-    df_max_ville_2019_2 = df_max_ville_2019['Nom de la commune'].unique().tolist()
+    df_max_ville_2019_2 = df_max_ville_2019['Nom de la commune'].unique(
+    ).tolist()
     if df_max_ville_2019_2[0] in rankingMax2019:
         index = df_max_ville_2019.index[0]
         df_2019_max = df_2019_max.drop([index])
@@ -89,22 +91,23 @@ while i !=2:
         rankingMax2019[df_max_ville_2019_2[0]] = df_max
         index = df_max_ville_2019.index[0]
         df_2019_max = df_2019_max.drop([index])
-        i +=1
+        i += 1
 
 
 rankingMax2020 = {}
-i=0
+i = 0
 df_2020_max = df_2020
-df_max=df_2020_max[cons_commune].max()
+df_max = df_2020_max[cons_commune].max()
 df_max_ville_2020 = df_2020_max[df_2020_max[cons_commune] == df_max]
 df_max_ville_2020_2 = df_max_ville_2020['Nom de la commune'].unique().tolist()
 rankingMax2020[df_max_ville_2020_2[0]] = df_max
 index = df_max_ville_2020.index[0]
 df_2020_max = df_2020_max.drop([index])
-while i !=2:
-    df_max=df_2020_max[cons_commune].max()
+while i != 2:
+    df_max = df_2020_max[cons_commune].max()
     df_max_ville_2020 = df_2020_max[df_2020_max[cons_commune] == df_max]
-    df_max_ville_2020_2 = df_max_ville_2020['Nom de la commune'].unique().tolist()
+    df_max_ville_2020_2 = df_max_ville_2020['Nom de la commune'].unique(
+    ).tolist()
     if df_max_ville_2020_2[0] in rankingMax2020:
         index = df_max_ville_2020.index[0]
         df_2020_max = df_2020_max.drop([index])
@@ -112,21 +115,22 @@ while i !=2:
         rankingMax2020[df_max_ville_2020_2[0]] = df_max
         index = df_max_ville_2020.index[0]
         df_2020_max = df_2020_max.drop([index])
-        i +=1
+        i += 1
 
 rankingMax2021 = {}
-i=0
+i = 0
 df_2021_max = df_2021
-df_max=df_2021_max[cons_commune].max()
+df_max = df_2021_max[cons_commune].max()
 df_max_ville_2021 = df_2021_max[df_2021_max[cons_commune] == df_max]
 df_max_ville_2021_2 = df_max_ville_2021['Nom de la commune'].unique().tolist()
 rankingMax2021[df_max_ville_2021_2[0]] = df_max
 index = df_max_ville_2021.index[0]
 df_2021_max = df_2021_max.drop([index])
-while i !=2:
-    df_max=df_2021_max[cons_commune].max()
+while i != 2:
+    df_max = df_2021_max[cons_commune].max()
     df_max_ville_2021 = df_2021_max[df_2021_max[cons_commune] == df_max]
-    df_max_ville_2021_2 = df_max_ville_2021['Nom de la commune'].unique().tolist()
+    df_max_ville_2021_2 = df_max_ville_2021['Nom de la commune'].unique(
+    ).tolist()
     if df_max_ville_2021_2[0] in rankingMax2021:
         index = df_max_ville_2021.index[0]
         df_2021_max = df_2021_max.drop([index])
@@ -134,7 +138,7 @@ while i !=2:
         rankingMax2021[df_max_ville_2021_2[0]] = df_max
         index = df_max_ville_2021.index[0]
         df_2021_max = df_2021_max.drop([index])
-        i +=1
+        i += 1
 
 rankingMax = []
 rankingMax.append(rankingMax2018)
@@ -143,21 +147,22 @@ rankingMax.append(rankingMax2020)
 rankingMax.append(rankingMax2021)
 
 
-#Les 3 commune qui consomment le moins dans l'année:
+# Les 3 commune qui consomment le moins dans l'année:
 
 rankingMin2018 = {}
-i=0
+i = 0
 df_2018_min = df_2018
-df_min=df_2018_min[cons_commune].min()
+df_min = df_2018_min[cons_commune].min()
 df_min_ville_2018 = df_2018_min[df_2018_min[cons_commune] == df_min]
 df_min_ville_2018_2 = df_min_ville_2018['Nom de la commune'].unique().tolist()
 rankingMin2018[df_min_ville_2018_2[0]] = df_min
 index = df_min_ville_2018.index[0]
 df_2018_min = df_2018_min.drop([index])
-while i !=2:
-    df_min=df_2018_min[cons_commune].min()
+while i != 2:
+    df_min = df_2018_min[cons_commune].min()
     df_min_ville_2018 = df_2018_min[df_2018_min[cons_commune] == df_min]
-    df_min_ville_2018_2 = df_min_ville_2018['Nom de la commune'].unique().tolist()
+    df_min_ville_2018_2 = df_min_ville_2018['Nom de la commune'].unique(
+    ).tolist()
     if df_min_ville_2018_2[0] in rankingMin2018:
         index = df_min_ville_2018.index[0]
         df_2018_min = df_2018_min.drop([index])
@@ -165,21 +170,22 @@ while i !=2:
         rankingMin2018[df_min_ville_2018_2[0]] = df_min
         index = df_min_ville_2018.index[0]
         df_2018_min = df_2018_min.drop([index])
-        i +=1
+        i += 1
 
 rankingMin2019 = {}
-i=0
+i = 0
 df_2019_min = df_2019
-df_min=df_2019_min[cons_commune].min()
+df_min = df_2019_min[cons_commune].min()
 df_min_ville_2019 = df_2019_min[df_2019_min[cons_commune] == df_min]
 df_min_ville_2019_2 = df_min_ville_2019['Nom de la commune'].unique().tolist()
 rankingMin2019[df_min_ville_2019_2[0]] = df_min
 index = df_min_ville_2019.index[0]
 df_2019_min = df_2019_min.drop([index])
-while i !=2:
-    df_min=df_2019_min[cons_commune].min()
+while i != 2:
+    df_min = df_2019_min[cons_commune].min()
     df_min_ville_2019 = df_2019_min[df_2019_min[cons_commune] == df_min]
-    df_min_ville_2019_2 = df_min_ville_2019['Nom de la commune'].unique().tolist()
+    df_min_ville_2019_2 = df_min_ville_2019['Nom de la commune'].unique(
+    ).tolist()
     if df_min_ville_2019_2[0] in rankingMin2019:
         index = df_min_ville_2019.index[0]
         df_2019_min = df_2019_min.drop([index])
@@ -187,22 +193,23 @@ while i !=2:
         rankingMin2019[df_min_ville_2019_2[0]] = df_min
         index = df_min_ville_2019.index[0]
         df_2019_min = df_2019_min.drop([index])
-        i +=1
+        i += 1
 
 
 rankingMin2020 = {}
-i=0
+i = 0
 df_2020_min = df_2020
-df_min=df_2020_min[cons_commune].min()
+df_min = df_2020_min[cons_commune].min()
 df_min_ville_2020 = df_2020_min[df_2020_min[cons_commune] == df_min]
 df_min_ville_2020_2 = df_min_ville_2020['Nom de la commune'].unique().tolist()
 rankingMin2020[df_min_ville_2020_2[0]] = df_min
 index = df_min_ville_2020.index[0]
 df_2020_min = df_2020_min.drop([index])
-while i !=2:
-    df_min=df_2020_min[cons_commune].min()
+while i != 2:
+    df_min = df_2020_min[cons_commune].min()
     df_min_ville_2020 = df_2020_min[df_2020_min[cons_commune] == df_min]
-    df_min_ville_2020_2 = df_min_ville_2020['Nom de la commune'].unique().tolist()
+    df_min_ville_2020_2 = df_min_ville_2020['Nom de la commune'].unique(
+    ).tolist()
     if df_min_ville_2020_2[0] in rankingMin2020:
         index = df_min_ville_2020.index[0]
         df_2020_min = df_2020_min.drop([index])
@@ -210,21 +217,22 @@ while i !=2:
         rankingMin2020[df_min_ville_2020_2[0]] = df_min
         index = df_min_ville_2020.index[0]
         df_2020_min = df_2020_min.drop([index])
-        i +=1
+        i += 1
 
 rankingMin2021 = {}
-i=0
+i = 0
 df_2021_min = df_2021
-df_min=df_2021_min[cons_commune].min()
+df_min = df_2021_min[cons_commune].min()
 df_min_ville_2021 = df_2021_min[df_2021_min[cons_commune] == df_min]
 df_min_ville_2021_2 = df_min_ville_2021['Nom de la commune'].unique().tolist()
 rankingMin2021[df_min_ville_2021_2[0]] = df_min
 index = df_min_ville_2021.index[0]
 df_2021_min = df_2021_min.drop([index])
-while i !=2:
-    df_min=df_2021_min[cons_commune].min()
+while i != 2:
+    df_min = df_2021_min[cons_commune].min()
     df_min_ville_2021 = df_2021_min[df_2021_min[cons_commune] == df_min]
-    df_min_ville_2021_2 = df_min_ville_2021['Nom de la commune'].unique().tolist()
+    df_min_ville_2021_2 = df_min_ville_2021['Nom de la commune'].unique(
+    ).tolist()
     if df_min_ville_2021_2[0] in rankingMin2021:
         index = df_min_ville_2021.index[0]
         df_2021_min = df_2021_min.drop([index])
@@ -232,13 +240,11 @@ while i !=2:
         rankingMin2021[df_min_ville_2021_2[0]] = df_min
         index = df_min_ville_2021.index[0]
         df_2021_min = df_2021_min.drop([index])
-        i +=1
+        i += 1
 
-rankingMin = []
-rankingMin.append(rankingMin2018)
-rankingMin.append(rankingMin2019)
-rankingMin.append(rankingMin2020)
-rankingMin.append(rankingMin2021)
+ranking = [[rankingMin2018, rankingMax2018], [rankingMin2019, rankingMax2019], [
+    rankingMin2020, rankingMax2020], [rankingMin2021, rankingMax2021]]
+
 
 
 def Elec_Adresse(Commune, Adresse, Annee, type):
