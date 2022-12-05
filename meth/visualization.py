@@ -7,11 +7,12 @@ import streamlit as st # Visualizing the maps on a browser page
 from streamlit_folium import st_folium # Visualizing the maps on a browser page
 
 from data_conso_annuelle.conso_resident import Elec_Departement, Elec_Commune
+from data_conso_annuelle.conso_resident import df_min
 
 granularities = {
-    "communes": 'visualization/communes-version-simplifiee.geojson',
-    "departements": 'visualization/departements-version-simplifiee.geojson',
-    "regions": 'visualization/regions-version-simplifiee.geojson'
+    "Municipalities": 'visualization/communes-version-simplifiee.geojson',
+    "Departments": 'visualization/departements-version-simplifiee.geojson',
+    "Regions": 'visualization/regions-version-simplifiee.geojson'
 }
 
 regions = {
@@ -29,29 +30,20 @@ regions = {
     "Provence-Alpes-Côte d'Azur": [4, 5, 6, 13, 83, 84]
 }
 
-YEAR = 2018
-grain = "communes"
 
-# Streamlit app parameters
-APP_TITLE = "Carte de la consommation d'électricité en France (MWh)"
-
-st.set_page_config(APP_TITLE)
-st.title(APP_TITLE)
-
-
-def get_region_consumption(region: str) -> float:
+def get_region_consumption(region: str, year: int) -> float:
     """"
     Calculates electricity consumption for the specified region
     @param region: The region from which we want to get the electricity consumption (str)
     @return: The electricity consumption (float)
     """
-    return sum([Elec_Departement(dpt, YEAR) for dpt in regions[region]])
+    return sum([Elec_Departement(dpt, year) for dpt in regions[region]])
 
 
 def display(granularity: str, dataframe: Any, key: str = 'nom'):
     """Displays a choropleth map showing the French electricity consumption,
     the regions of the map being displayed according to the specified granularity.
-    @param: granularity: "communes", "departements" or "regions".
+    @param: granularity: "Municipalities", "Departments" or "Regions".
     @param: dataframe: the dataset used to color the choropleth map, converted to a dataframe.
     """
     # Creating the map and getting folium to focus on the right place (France)
@@ -83,22 +75,59 @@ def display(granularity: str, dataframe: Any, key: str = 'nom'):
 
     st_folium(territory_map, width=700, height=450) # Plotting in the streamlit app
 
-def disp(granularity: str):
-    if granularity == "regions":
-        APP_SUB_TITLE = "Année : " + str(YEAR) + ", " + "Granularité : " + grain
-        st.caption(APP_SUB_TITLE)
-        dataset = {"nom": regions.keys(), "cons": [get_region_consumption(region) for region in regions.keys()]}
+
+def load(granularity: str, year: int):
+    if granularity == "Regions":
+        dataset = {"nom": regions.keys(), "cons": [get_region_consumption(region, year) for region in regions.keys()]}
         df = pd.DataFrame.from_dict(dataset)
         display(granularity, df)
-
-    elif granularity == "departements": ##A COMPLETER : Zoom sur la région, spécifier la région en subtitle
-        APP_SUB_TITLE = "Année : " + str(YEAR) + ", " + "Granularité : " + grain + ", Region : "
-        st.caption(APP_SUB_TITLE)
+    elif granularity == "Departments":
         dataset = {"nom": [str(i) if i > 9 else f"0{i}" for i in range(96)],
-                       "cons": [Elec_Departement(i, YEAR) for i in range(96)]}
+                   "cons": [Elec_Departement(i, year) for i in range(96)]}
         df = pd.DataFrame.from_dict(dataset)
-        display("departements", df, "code")
+        display(granularity, df, "code")
 
 
-# "Main"
-disp(grain)
+def disp_top_3(year: int, dir: int):
+    """
+    Displays a top 3 of the least/most electricity consuming towns.
+    @param year: which year for the top 3
+    @param dir: 0 for least consuming, 1 for most consuming
+    """
+    if dir == 0:
+        st.subheader("Top 3 Most Eco-Friendly Towns:")
+    elif dir == 1:
+        st.subheader("Top 3 Most Electricity Consuming Towns:")
+    year = (year + 2) % 4
+    st.text("#1 : ")
+    st.text("#2 : ")
+    st.text("#3 : ")
+#    st.text(f'#1: {ranking[year][dir][0]}')
+#    st.text(f'#2: {ranking[year][dir][1]}')
+#    st.text(f'#3: {ranking[year][dir][2]}')
+
+
+
+def main():
+    # Streamlit app parameters
+    APP_TITLE = "French electricity consumption map"
+    st.set_page_config(APP_TITLE, layout="wide")
+    st.title(APP_TITLE)
+
+    year = [2018, 2019, 2020, 2021]
+    selected_year = st.sidebar.selectbox('Year', year)
+    selected_granularity = st.sidebar.radio('Granularity', ["Regions", "Departments", "Municipalities"])
+
+    # Display
+    col1, col2 = st.columns(spec=[3, 1], gap="small")
+    with col1:
+        APP_SUB_TITLE = f'Year : {selected_year}, Granularity: {selected_granularity}, Data format: MWh'
+        st.caption(APP_SUB_TITLE)
+        load(selected_granularity, selected_year)
+    with col2:
+        disp_top_3(selected_year, 0)
+        disp_top_3(selected_year, 1)
+
+
+if __name__ == "__main__":
+    main()
