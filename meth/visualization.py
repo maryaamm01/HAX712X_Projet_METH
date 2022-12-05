@@ -118,7 +118,7 @@ def main():
     selected_year = st.sidebar.selectbox('Year', year)
     selected_granularity = st.sidebar.radio('Granularity', ["Regions", "Departments", "Municipalities"])
 
-    # Display
+    # Displays
     col1, col2 = st.columns(spec=[3, 1], gap="small")
     with col1:
         APP_SUB_TITLE = f'Year : {selected_year}, Granularity: {selected_granularity}, Data format: MWh'
