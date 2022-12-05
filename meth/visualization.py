@@ -7,7 +7,7 @@ import streamlit as st # Visualizing the maps on a browser page
 from streamlit_folium import st_folium # Visualizing the maps on a browser page
 
 from data_conso_annuelle.conso_resident import Elec_Departement, Elec_Commune
-from data_conso_annuelle.conso_resident import df_min
+#from data_conso_annuelle.conso_resident import
 
 granularities = {
     "Municipalities": 'visualization/communes-version-simplifiee.geojson',
@@ -99,12 +99,8 @@ def disp_top_3(year: int, dir: int):
     elif dir == 1:
         st.subheader("Top 3 Most Electricity Consuming Towns:")
     year = (year + 2) % 4
-    st.text("#1 : ")
-    st.text("#2 : ")
-    st.text("#3 : ")
-#    st.text(f'#1: {ranking[year][dir][0]}')
-#    st.text(f'#2: {ranking[year][dir][1]}')
-#    st.text(f'#3: {ranking[year][dir][2]}')
+    st.text(f'#{i+1} : ' for i in range(3))
+#    st.text(f'#{i+1}: {ranking[year][dir][i]}' for i in range(3))
 
 
 
