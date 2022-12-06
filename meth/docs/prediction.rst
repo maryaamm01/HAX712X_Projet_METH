@@ -2,7 +2,7 @@ Prédiction :
 ==================
 
 
-Module pour création du data :
+Module pour création de la data :
 ------------------------------
 
 .. automodule:: prediction.CreationData
@@ -10,7 +10,7 @@ Module pour création du data :
    :undoc-members:
    :show-inheritance:
 
-Le modèle utiliser pour faire la prédiction :
+Le modèle utilisé pour faire la prédiction :
 ------------------------
 
 .. automodule:: prediction.Modèle

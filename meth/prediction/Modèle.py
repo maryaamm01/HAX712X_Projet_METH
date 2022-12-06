@@ -27,10 +27,10 @@ data_test = ts.iloc[-35880:,:].copy()
                                         irregular=True,
                                         stochastic_level = False,
                                         stochastic_trend = False,
-                                        stochastic_freq_seasonal = [False, False, False],
-                                        freq_seasonal=[{'period': 672, 'harmonics': 1},
-                                                       {'period': 2880, 'harmonics': 1},
-                                                       {'period': 35066, 'harmonics': 2}])
+                                        stochastic_freq_seasonal = [True, False, False],
+                                        freq_seasonal=[{'period': 96, 'harmonics': 6},
+                                                       {'period': 672, 'harmonics': 2},
+                                                       {'period': 35066, 'harmonics': 1}])
 #fitting model to train data
 model_UC1res = model_UC1.fit()
 
