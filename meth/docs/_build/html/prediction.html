@@ -101,6 +101,20 @@ return dataframe</p>
 <dt class="sig sig-object py" id="prediction.predictionClass.MODEL">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">prediction.predictionClass.</span></span><span class="sig-name descname"><span class="pre">MODEL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prediction/predictionClass.html#MODEL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#prediction.predictionClass.MODEL" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>cette classe définit le modèle de prédiction nommé Unobserved Components Model “UCM” et cette
+se compose de deux fonctions la première c’est la fonction d’initialisation de l’objet  (__init__)
+avec les attributs de cette fonction sont :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>start : c’est la date du début de prédiction de type date écrit sous la forme ANNÉE-MOIS exemple (2022-06)</p></li>
+<li><p>end : c’est la date du fin de prédiction de type date écrit sous la forme ANNÉE-MOIS exemple (2022-09).</p></li>
+</ul>
+</div></blockquote>
+<p>la deuxième fonction nommé (mod) définit le modèle de prédiction UCM du premier temp cette fonction fait l’importation
+du data collectés du 01 JAN 2019 jusqu’à 06 Déc 2022 et cette fonction retourne forc:</p>
+<blockquote>
+<div><p>-for : c’est les valeure de prédiction cherché sous form data frame</p>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="prediction.predictionClass.MODEL.mod">
 <span class="sig-name descname"><span class="pre">mod</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prediction/predictionClass.html#MODEL.mod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#prediction.predictionClass.MODEL.mod" title="Permalink to this definition"></a></dt>
