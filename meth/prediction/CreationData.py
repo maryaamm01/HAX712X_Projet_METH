@@ -7,6 +7,10 @@ import os
 import pooch
 
 def dataframe(energie):
+    """Traitement de la base de donnees pour l'energie ciblé
+    energie(str):Nom de l'energie du dataframe
+    return dataframe"""
+    
     #___________________Création du Data 2019_________________________
      """les comm. ici.........."""
     url = "https://bit.ly/3i1OFkU"
@@ -30,13 +34,15 @@ def dataframe(energie):
             data2019[energie][nan] = (data2019[energie][nan-1] +data2019[energie][nan+1])/2
     data2019[energie][len(data2019)-1]= (data2019[energie][len(data2019)-2]+data2019[energie][len(data2019)-3])/2        
     print("le nombre de NaN sur data2019 est : ",int(data2019.isna().sum())) 
+    
+    
     #____________________Création du Data 2020_________________________
     url = "https://bit.ly/3V81yIg"
     path_target = "./eco2mix-national-cons-def(1).csv"
     path, fname = os.path.split(path_target)
     pooch.retrieve(url, path=path, fname=fname, known_hash=None,)
-    data2020= pd.read_csv("eco2mix-national-cons-def(1).csv",sep=";")
-    data2020=data2020[['Date','Heure',energie]]
+    data2020 = pd.read_csv("eco2mix-national-cons-def(1).csv",sep=";")
+    data2020 = data2020[['Date','Heure',energie]]
     ## changer le format du temps.
     time_improved = pd.to_datetime(data2020['Date'] +
                                     ' ' + data2020['Heure'],
@@ -50,15 +56,17 @@ def dataframe(energie):
     for nan in range(len(data2020)-1):  
         if data2020[[energie]].isna().iloc[:,0][nan]:
             data2020[energie][nan] = (data2020[energie][nan-1] +data2020[energie][nan+1])/2
-    data2020[energie][len(data2020)-1]= (data2020[energie][len(data2020)-2]+data2020[energie][len(data2020)-3])/2        
+    data2020[energie][len(data2020)-1] = (data2020[energie][len(data2020)-2]+data2020[energie][len(data2020)-3])/2        
     print("le nombre de NaN sur data2020 est : ",int(data2020.isna().sum()))
+    
+    
     #____________________Création du Data 2021_________________________
     url = "https://bit.ly/3UO3NRc"
     path_target = "./eco2mix-national-cons-def(2).csv"
     path, fname = os.path.split(path_target)
     pooch.retrieve(url, path=path, fname=fname, known_hash=None,)
-    data2021= pd.read_csv("eco2mix-national-cons-def(2).csv",sep=";")
-    data2021=data2021[['Date','Heure',energie]]
+    data2021 = pd.read_csv("eco2mix-national-cons-def(2).csv",sep=";")
+    data2021 = data2021[['Date','Heure',energie]]
     ## changer le format du temps .
     time_improved = pd.to_datetime(data2021['Date'] +
                                     ' ' + data2021['Heure'],
@@ -79,9 +87,9 @@ def dataframe(energie):
     path_target = "./eco2mix-national-cons-def(3).csv"
     path, fname = os.path.split(path_target)
     pooch.retrieve(url, path=path, fname=fname, known_hash=None,)
-    data2022HALF1= pd.read_csv("eco2mix-national-cons-def(3).csv",sep=";")
+    data2022HALF1 = pd.read_csv("eco2mix-national-cons-def(3).csv",sep=";")
     #data2022HALF1 = data2022HALF1.set_index('Date et Heure')
-    data2022HALF1=data2022HALF1[['Date','Heure',energie]]
+    data2022HALF1 = data2022HALF1[['Date','Heure',energie]]
     ### changer le format du temps
     time_improved = pd.to_datetime(data2022HALF1['Date'] +
                                     ' ' + data2022HALF1['Heure'],
@@ -90,19 +98,21 @@ def dataframe(energie):
     data2022HALF1.set_index('Temps', inplace=True) 
     del data2022HALF1['Heure']
     del data2022HALF1['Date']
-    data2022HALF1= data2022HALF1.sort_index(ascending=True)
+    data2022HALF1 = data2022HALF1.sort_index(ascending=True)
     ## remplacer les NaN et la transformation de la consomation du 2022 sur chaque 15 min.
     for nan in range(len(data2022HALF1)-1):  
         if data2022HALF1[[energie]].isna().iloc[:,0][nan]:
             data2022HALF1[energie][nan] = (data2022HALF1[energie][nan-1] +data2022HALF1[energie][nan+1])/2
-    data2022HALF1[energie][len(data2022HALF1)-1]= (data2022HALF1[energie][len(data2022HALF1)-2]+data2022HALF1[energie][len(data2022HALF1)-3])/2        
+    data2022HALF1[energie][len(data2022HALF1)-1] = (data2022HALF1[energie][len(data2022HALF1)-2]+data2022HALF1[energie][len(data2022HALF1)-3])/2        
     print("le nombre de NaN sur data2022HALF1 est : ",int(data2022HALF1.isna().sum())) 
+    
+    
     #____________________Création du Data 2022 de junin_________________________
     url = "https://bit.ly/3Ep9TjU"
     path_target = "./eco2mix-national-cons-def(4).csv"
     path, fname = os.path.split(path_target)
     pooch.retrieve(url, path=path, fname=fname, known_hash=None,)
-    data2022HALF2= pd.read_csv("eco2mix-national-cons-def(4).csv",sep=";")
+    data2022HALF2 = pd.read_csv("eco2mix-national-cons-def(4).csv",sep=";")
     #Data2022 = Data2022.set_index('Date et Heure')
     data2022HALF2=data2022HALF2[['Date','Heure',energie]]
     ### changer le format du temps

@@ -1,4 +1,8 @@
 def prediction(energie): 
+    """Revoie un dataframe de la prediction de la consommation
+    d'energie du 8 decembre 2022 par 15 minutes 
+    energie(str):Nom de l'energie dans le dataset
+    return dataframe"""
 
     import warnings
     warnings.filterwarnings('ignore')
