@@ -2,18 +2,18 @@ Prédiction :
 ==================
 
 
-Module pour création du data :
-------------------------------
+Module pour création de la data :
+----------------------------------
 
 .. automodule:: prediction.CreationData
    :members:
    :undoc-members:
    :show-inheritance:
 
-Le modèle utiliser pour faire la prédiction :
-------------------------
+Le modèle utilisé pour faire la prédiction :
+---------------------------------------------
 
-.. automodule:: prediction.Modèle
+.. automodule:: prediction.predictionClass
    :members:
    :undoc-members:
    :show-inheritance:

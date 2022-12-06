@@ -42,11 +42,17 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Prédiction :</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-prediction.CreationData">Module pour création du data :</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-prediction.CreationData">Module pour création de la data :</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#prediction.CreationData.dataframe"><code class="docutils literal notranslate"><span class="pre">dataframe()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#le-modele-utiliser-pour-faire-la-prediction">Le modèle utiliser pour faire la prédiction :</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-prediction.predictionClass">Le modèle utilisé pour faire la prédiction :</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prediction.predictionClass.MODEL"><code class="docutils literal notranslate"><span class="pre">MODEL</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prediction.predictionClass.MODEL.mod"><code class="docutils literal notranslate"><span class="pre">MODEL.mod()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="visualisation.html">Visualisation :</a></li>
@@ -79,15 +85,29 @@
   <section id="prediction">
 <h1>Prédiction :<a class="headerlink" href="#prediction" title="Permalink to this heading"></a></h1>
 <section id="module-prediction.CreationData">
-<span id="module-pour-creation-du-data"></span><h2>Module pour création du data :<a class="headerlink" href="#module-prediction.CreationData" title="Permalink to this heading"></a></h2>
+<span id="module-pour-creation-de-la-data"></span><h2>Module pour création de la data :<a class="headerlink" href="#module-prediction.CreationData" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="prediction.CreationData.dataframe">
-<span class="sig-prename descclassname"><span class="pre">prediction.CreationData.</span></span><span class="sig-name descname"><span class="pre">dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prediction/CreationData.html#dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#prediction.CreationData.dataframe" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">prediction.CreationData.</span></span><span class="sig-name descname"><span class="pre">dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energie</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prediction/CreationData.html#dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#prediction.CreationData.dataframe" title="Permalink to this definition"></a></dt>
+<dd><p>Traitement de la base de donnees pour l’energie ciblé
+energie(str):Nom de l’energie du dataframe
+return dataframe</p>
+</dd></dl>
 
 </section>
-<section id="le-modele-utiliser-pour-faire-la-prediction">
-<h2>Le modèle utiliser pour faire la prédiction :<a class="headerlink" href="#le-modele-utiliser-pour-faire-la-prediction" title="Permalink to this heading"></a></h2>
+<section id="module-prediction.predictionClass">
+<span id="le-modele-utilise-pour-faire-la-prediction"></span><h2>Le modèle utilisé pour faire la prédiction :<a class="headerlink" href="#module-prediction.predictionClass" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="prediction.predictionClass.MODEL">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">prediction.predictionClass.</span></span><span class="sig-name descname"><span class="pre">MODEL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prediction/predictionClass.html#MODEL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#prediction.predictionClass.MODEL" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="prediction.predictionClass.MODEL.mod">
+<span class="sig-name descname"><span class="pre">mod</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prediction/predictionClass.html#MODEL.mod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#prediction.predictionClass.MODEL.mod" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 

@@ -1,11 +1,10 @@
 #%%
-import CreationData as cr
+import pandas as pd
 import warnings
 from statsmodels.tsa.seasonal import seasonal_decompose
 import statsmodels.api as sm
 import pandas as pd
 import numpy as np
-# plotting
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -19,7 +18,9 @@ class MODEL():
         pass
 
     def mod(self) :
-        df = cr.dataframe()  # data from 2019-01-01 00:00:00 to 2022-11-29 12:45:00
+        df =pd.read_csv("./dataset/dataelec.csv")  # data from 2019-01-01 00:00:00 to 2022-11-29 12:45:00
+        df=df.set_index('Temps')
+        df.index=pd.to_datetime(df.index)
         # splitting time series to train and test subsets
         data_test = df.iloc[-35880:, :]
         # Unobserved Components model definition
@@ -37,8 +38,5 @@ class MODEL():
     
         forc = model_UC1res.predict(start=self.start+" 00:00:00", end=self.end+" 23:45:00").to_frame()
         return forc
-#%%
-start1="2022-12-08"
-end1="2022-12-08"
-obj1 = MODEL(start=start1,end=end1)
-day1 = obj1.mod()
+
+
