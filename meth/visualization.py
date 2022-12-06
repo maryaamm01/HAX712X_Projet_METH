@@ -1,43 +1,19 @@
-from typing import Any # Accented characters
+from typing import Any  # Accented characters
 
-import pandas as pd # Data
-import geopandas as gpd # Geographic Data
-import folium # Map
-import streamlit as st # Visualizing the maps on a browser page
-from streamlit_folium import st_folium # Visualizing the maps on a browser page
+import folium  # Map
+import geopandas as gpd  # Geographic Data
+import pandas as pd  # Data
+import streamlit as st  # Visualizing the maps on a browser page
+from streamlit_folium import st_folium  # Visualizing the maps on a browser page
 
-from data_conso_annuelle.conso_resident import Elec_Departement, Elec_Commune
-#from data_conso_annuelle.conso_resident import
+from data_conso_annuelle.conso_resident import Elec_Departement, Elec_Region as get_region_consumption
+from data_conso_annuelle.conso_resident import regions, ranking
 
 granularities = {
     "Municipalities": 'visualization/communes-version-simplifiee.geojson',
     "Departments": 'visualization/departements-version-simplifiee.geojson',
     "Regions": 'visualization/regions-version-simplifiee.geojson'
 }
-
-regions = {
-    "Auvergne-Rhône-Alpes": [1, 3, 7, 15, 26, 38, 42, 43, 63, 69, 73, 74],
-    "Bourgogne-Franche-Comté": [21, 25, 39, 58, 70, 71, 89, 90],
-    "Bretagne": [22, 29, 35, 56],
-    "Centre-Val de Loire": [18, 28, 36, 37, 41, 45],
-    "Grand Est": [8, 10, 51, 52, 54, 55, 57, 67, 68, 88],
-    "Hauts-de-France": [2, 59, 60, 62, 80],
-    "Île-de-France": [75, 77, 78, 91, 92, 93, 94, 95],
-    "Normandie": [14, 27, 50, 61, 76],
-    "Nouvelle-Aquitaine": [16, 17, 19, 23, 24, 33, 40, 47, 64, 79, 86, 87],
-    "Occitanie": [9, 11, 12, 30, 31, 32, 34, 46, 48, 65, 66, 81, 82],
-    "Pays de la Loire": [44, 49, 53, 72, 85],
-    "Provence-Alpes-Côte d'Azur": [4, 5, 6, 13, 83, 84]
-}
-
-
-def get_region_consumption(region: str, year: int) -> float:
-    """"
-    Calculates electricity consumption for the specified region
-    @param region: The region from which we want to get the electricity consumption (str)
-    @return: The electricity consumption (float)
-    """
-    return sum([Elec_Departement(dpt, year) for dpt in regions[region]])
 
 
 def display(granularity: str, dataframe: Any, key: str = 'nom'):
@@ -73,10 +49,16 @@ def display(granularity: str, dataframe: Any, key: str = 'nom'):
         folium.features.GeoJsonTooltip(["nom", "cons"], labels=False)
     )
 
-    st_folium(territory_map, width=700, height=450) # Plotting in the streamlit app
+    st_folium(territory_map, width=700, height=450)  # Plotting in the streamlit app
 
 
 def load(granularity: str, year: int):
+    """
+
+    @param granularity:
+    @param year:
+    @return:
+    """
     if granularity == "Regions":
         dataset = {"nom": regions.keys(), "cons": [get_region_consumption(region, year) for region in regions.keys()]}
         df = pd.DataFrame.from_dict(dataset)
@@ -88,20 +70,18 @@ def load(granularity: str, year: int):
         display(granularity, df, "code")
 
 
-def disp_top_3(year: int, dir: int):
+def disp_top_3(year: int, order: str = "min"):
     """
     Displays a top 3 of the least/most electricity consuming towns.
     @param year: which year for the top 3
-    @param dir: 0 for least consuming, 1 for most consuming
+    @param order: "min" for least consuming, "max" for most consuming (default: "min")
     """
-    if dir == 0:
+    if order == "min":
         st.subheader("Top 3 Most Eco-Friendly Towns:")
-    elif dir == 1:
+    elif order == "max":
         st.subheader("Top 3 Most Electricity Consuming Towns:")
-    year = (year + 2) % 4
-    st.text(f'#{i+1} : ' for i in range(3))
-#    st.text(f'#{i+1}: {ranking[year][dir][i]}' for i in range(3))
-
+    for i, city in enumerate(ranking[str(year)][order]):
+        st.metric(f'#{i + 1}: {city["city"]}', f'{city["value"]} MWh')
 
 
 def main():
@@ -117,12 +97,12 @@ def main():
     # Displays
     col1, col2 = st.columns(spec=[3, 1], gap="small")
     with col1:
-        APP_SUB_TITLE = f'Year : {selected_year}, Granularity: {selected_granularity}, Data format: MWh'
+        APP_SUB_TITLE = f'Year : {selected_year}, Granularity: {selected_granularity}, Unit: MWh'
         st.caption(APP_SUB_TITLE)
         load(selected_granularity, selected_year)
     with col2:
-        disp_top_3(selected_year, 0)
-        disp_top_3(selected_year, 1)
+        disp_top_3(selected_year, "min")
+        disp_top_3(selected_year, "max")
 
 
 if __name__ == "__main__":
