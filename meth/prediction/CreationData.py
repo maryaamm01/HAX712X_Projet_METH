@@ -7,6 +7,10 @@ import os
 import pooch
 
 def dataframe(energie):
+    """Traitement de la base de donnees pour l'energie ciblé
+    energie(str):Nom de l'energie du dataframe
+    return dataframe"""
+    
     #___________________Création du Data 2019_________________________
 
     url = "https://bit.ly/3i1OFkU"
