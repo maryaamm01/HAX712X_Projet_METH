@@ -14,8 +14,8 @@ class MODEL():
     """cette classe définit le modèle de prédiction nommé Unobserved Components Model "UCM" et cette
     se compose de deux fonctions la première c'est la fonction d'initialisation de l'objet  (__init__)
     avec les attributs de cette fonction sont :\\
-      - start : c'est la date du début de prédiction de type date écrit sous la forme ANNÉE-MOIS exemple (2022-06)
-      - end : c'est la date du fin de prédiction de type date écrit sous la forme ANNÉE-MOIS exemple (2022-09).
+      - start : c'est la date du début de prédiction de type date écrit sous la forme ANNÉE-MOIS-JOUR exemple (2022-01-12)
+      - end : c'est la date du fin de prédiction de type date écrit sous la forme ANNÉE-MOIS-JOUR exemple (2022-09-14).
     la deuxième fonction nommé (mod) définit le modèle de prédiction UCM du premier temp cette fonction fait l'importation
     du data collectés du 01 JAN 2019 jusqu'à 06 Déc 2022 et cette fonction retourne forc:\\
       -for : c'est les valeure de prédiction cherché sous form data frame"""
