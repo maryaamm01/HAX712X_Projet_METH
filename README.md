@@ -30,6 +30,17 @@ To run the visualization, make sure you are in the /meth folder, then use:
 - Zakaria Chowdhury, [streamlit-map-dashboard](https://github.com/zakariachowdhury/streamlit-map-dashboard)
 - VarishuPant99 (https://github.com/VarishuPant99/Unobserved_Components_Model/blob/master/ECM_Varishu_Pant_D19033.ipynb)
 
+## Known Issues
+
+**[FIXED] "Can't convert "\n" to float" when running the visualization.**
+
+How to fix : 
+If you still get this error, please check the file log.txt in your meth/visualization folder. It is due to the blank spaces at the begining of the file, please remove these and make sure you only have two values, on two separate lines, like this:
+    
+    46.8534
+    46.8534
+
+
 ## Licence
 
 We do not have a licence yet.
