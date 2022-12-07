@@ -166,7 +166,7 @@ if __name__ == "__main__":
 
     with open(file_path, "r+") as f:
         first_line = f.readline()
-        while first_line == "":
+        while first_line == "\n":
             first_line = f.readline()
         second_line = f.readline()
 
