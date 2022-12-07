@@ -1,5 +1,11 @@
 import pandas as pd
 
+granularities = {
+    "Municipalities": 'visualization/communes-version-simplifiee.geojson',
+    "Departments": 'visualization/departements-version-simplifiee.geojson',
+    "Regions": 'visualization/regions-version-simplifiee.geojson'
+}
+
 cons_total = "Consommation annuelle totale de l'adresse (MWh)"
 cons_moyen = "Consommation annuelle moyenne par logement de l'adresse (MWh)"
 cons_commune = "Consommation annuelle moyenne de la commune (MWh)"
@@ -108,10 +114,12 @@ def Elec_Commune(Commune, Annee):
 
 
 def Elec_Departement(Departement, Annee):
-    """"Donne la consommation annuelle moyenne du departement en MHW
-    Departement(int):numero du departement
-    Annee(int):date de l'année
-    return float"""
+    """
+    Gives the average annual consumption of the department in MWh.
+    Departement(int): department number
+    Annee(int): year
+    return float
+    """
     if Annee == 2018:
         df_dep = df_2018[df_2018['Departement'] == Departement]
         return (sum(df_dep[cons_commune].unique()))

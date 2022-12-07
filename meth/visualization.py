@@ -7,27 +7,18 @@ import streamlit as st  # Visualizing the maps on a browser page
 from streamlit_folium import st_folium  # Visualizing the maps on a browser page
 
 from data_conso_annuelle.conso_resident import Elec_Departement, Elec_Region as get_region_consumption
-from data_conso_annuelle.conso_resident import regions, ranking
-
-granularities = {
-    "Municipalities": 'visualization/communes-version-simplifiee.geojson',
-    "Departments": 'visualization/departements-version-simplifiee.geojson',
-    "Regions": 'visualization/regions-version-simplifiee.geojson'
-}
-
-
-def display_reg_filter(reg_name):
-    reg_list = [''] + list(regions)
-    reg_index = reg_list.index(reg_name) if reg_name and reg_name in reg_list else 0
-    return st.sidebar.selectbox('Region', reg_list, reg_index)
+from data_conso_annuelle.conso_resident import granularities, regions, ranking
 
 
 def display(granularity: str, dataframe: Any, key: str = 'nom', zoom: float = 5, lat: float = 46.8534,
             long: float = 2.3488):
-    """Displays a choropleth map showing the French electricity consumption,
+    """
+    To be used in load_... functions.
+    Displays a choropleth map showing the French electricity consumption,
     the regions of the map being displayed according to the specified granularity.
-    @param: granularity: "Municipalities", "Departments" or "Regions".
+    @param: granularity: "Departments", "Regions" or (coming soon) "Municipalities".
     @param: dataframe: the dataset used to color the choropleth map, converted to a dataframe.
+    @return: A dict with 'region': the name of the clicked area and 'coordinates': the latitude and longitude of the click (dict 'lat', 'lng').
     """
     # Creating the map and getting folium to focus on the right place (France)
     territory_map = folium.Map(location=[lat, long], zoom_start=zoom, scrollWheelZoom=False,
@@ -58,11 +49,12 @@ def display(granularity: str, dataframe: Any, key: str = 'nom', zoom: float = 5,
 
     final_map = st_folium(territory_map, width=700, height=450)  # Plotting in the streamlit app
 
+    # Returning parameters that we are going to use later to make the maps interactive
     reg_name = ''
-    if final_map['last_active_drawing']:
+    if final_map['last_active_drawing']:  # To get the clicked area
         reg_name = final_map['last_active_drawing']['properties']['nom']
 
-    if final_map['last_clicked']:
+    if final_map['last_clicked']:  # To get the click position
         click = {"lat": final_map['last_clicked']['lat'], "lng": final_map['last_clicked']['lng']}
     else:
         click = {"lat": 46, "lng": 2.3}
@@ -71,8 +63,9 @@ def display(granularity: str, dataframe: Any, key: str = 'nom', zoom: float = 5,
 
 def load_regions(year: int):
     """
-    @param year:
-    @return:
+    To be used to display regions.
+    @param year: The year of the data
+    @return: The parameters returned by the display function
     """
     dataset = {"nom": regions.keys(), "cons": [get_region_consumption(region, year) for region in regions.keys()]}
     df = pd.DataFrame.from_dict(dataset)
@@ -82,9 +75,13 @@ def load_regions(year: int):
 def load_department(year: int, reg: str = "Nouvelle-Aquitaine", zoom: float = 5, lat: float = 46.8534,
                     long: float = 2.3488):
     """
-
-    @param year:
-    @return:
+    To be used to display departments.
+    @param year: The year of the data
+    @param reg: The region whose departments you want to load
+    @param zoom: The zoom (5 for national scale, 6.5 for region scale)
+    @param lat: The latitude of the map center
+    @param long: The longitude of the map center
+    @return: The parameters returned by the display function
     """
     if reg == '':
         reg = "Nouvelle-Aquitaine"
@@ -95,6 +92,17 @@ def load_department(year: int, reg: str = "Nouvelle-Aquitaine", zoom: float = 5,
     df = pd.DataFrame.from_dict(dataset)
     (lat, long) = (46.8534, 2.3488) if zoom == 5 else (lat, long)
     display("Departments", df, "code", zoom, lat, long)
+
+
+def display_reg_filter(reg_name: str):
+    """
+    Creates a scroll bar to select a region
+    @param reg_name: the active parameter
+    @return: the scroll bar
+    """
+    reg_list = [''] + list(regions)
+    reg_index = reg_list.index(reg_name) if reg_name and reg_name in reg_list else 0
+    return st.sidebar.selectbox('Region', reg_list, reg_index)
 
 
 def disp_top_3(year: int, order: str = "min"):
@@ -111,11 +119,13 @@ def disp_top_3(year: int, order: str = "min"):
         st.metric(f'#{i + 1}: {city["city"]}', f'{city["value"]} MWh')
 
 
-def set_zoom(test):
-    if test:
-        return 5
-    else:
-        return 6.5
+def set_zoom(cond):
+    """
+    Really just gets the zoom for load_department for now.
+    @param cond: The condition for zooming
+    @return: the zoom level
+    """
+    return 5 if cond else 6.5
 
 
 def main(lat_value1: int, lat_value2: int):
@@ -124,21 +134,26 @@ def main(lat_value1: int, lat_value2: int):
     st.set_page_config(APP_TITLE, layout="wide")
     st.title(APP_TITLE)
 
+    # Displays
     year = [2018, 2019, 2020, 2021]
     selected_year = st.sidebar.selectbox('Year', year)
-
-    # Displays
     col1, col2 = st.columns(spec=[3, 1], gap="small")
     with col1:
         APP_SUB_TITLE = f'Year : {selected_year}, Unit: MWh'
         st.caption(APP_SUB_TITLE)
+
         loaded_reg = load_regions(selected_year)
         selected_region = display_reg_filter(loaded_reg['region'])
+
         flag = round(float(lat_value1), 2) == round(loaded_reg['coordinates']['lat'], 2) \
                and round(float(lat_value2), 2) == round(loaded_reg['coordinates']['lat'], 2)
         default_zoom = set_zoom(flag)
-        loaded_dept = load_department(selected_year, selected_region, default_zoom, loaded_reg['coordinates']['lat'],
-                                      loaded_reg['coordinates']['lng'])
+
+        load_department(selected_year,
+                        selected_region,
+                        default_zoom,
+                        loaded_reg['coordinates']['lat'],
+                        loaded_reg['coordinates']['lng'])
     with col2:
         disp_top_3(selected_year, "min")
         disp_top_3(selected_year, "max")
