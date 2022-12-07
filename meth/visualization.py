@@ -168,6 +168,8 @@ if __name__ == "__main__":
         first_line = f.readline()
         second_line = f.readline()
 
+    second_line.replace("\n", "")
+    
     lat_value = main(first_line, second_line)
 
     with open(file_path, "w") as f:
