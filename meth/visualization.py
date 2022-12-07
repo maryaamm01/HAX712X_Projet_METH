@@ -166,10 +166,13 @@ if __name__ == "__main__":
 
     with open(file_path, "r+") as f:
         first_line = f.readline()
+        while first_line == "":
+            first_line = f.readline()
         second_line = f.readline()
 
-    second_line.replace("\n", "")
-    
+    if second_line == '':
+        second_line = 46.8534
+
     lat_value = main(first_line, second_line)
 
     with open(file_path, "w") as f:
