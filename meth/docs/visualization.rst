@@ -1,10 +1,10 @@
-Visualisation :
+visualization package
 =====================
 
 Module contents
 ---------------
 
-.. automodule:: visualisation
+.. automodule:: visualization
    :members:
    :undoc-members:
    :show-inheritance:

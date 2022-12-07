@@ -13,7 +13,7 @@ Welcome to PROJET's documentation!
 
    prediction
 
-   visualisation
+   visualization
 
 Indices and tables
 ==================

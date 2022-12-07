@@ -14,7 +14,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 from prediction import *
-import visualisation
+import visualization
 
 
 # -- Project information -----------------------------------------------------
