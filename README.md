@@ -23,6 +23,8 @@ To install the requirements, please use the following command:
 To run the visualization, make sure you are in the /meth folder, then use:
 
     streamlit run visualization.py
+    
+You can find the prediction data for december 8th in the meth/rendu folder.
 
 ## References
 
