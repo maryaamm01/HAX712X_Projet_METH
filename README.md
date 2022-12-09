@@ -24,7 +24,9 @@ To run the visualization, make sure you are in the /meth folder, then use:
 
     streamlit run visualization.py
     
-You can find the prediction data for december 8th in the meth/rendu folder.
+You can find the december 8th electricity consumption prediction data (total consumption) in the cons_08_dec.csv file
+
+You can find the december 8th prediction data for each energy type in the energies_prediction_8_dec.ipynb file. 
 
 ## References
 
