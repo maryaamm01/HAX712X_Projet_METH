@@ -1,4 +1,4 @@
-# HAX712X_Projet_METH
+# HAX712X_Electricity_Consumption
 
 This project handles datasets from the French electricity consumption with the motivation:
 - to create a graphic interface for vizualizing French electricity consumption on a past given day, month or year;
